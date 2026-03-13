@@ -1,12 +1,19 @@
-const express = require('express');
-const app = express();
+import express from 'express';
+import path from 'path';
 import screenshotRoute from './routes/screenshot';
-const port = 3000;
 
-app.use(express.json());
-app.use("/screenshot", screenshotRoute);
+export function createApp() {
+    const app = express();
+    app.use(express.json());
+    app.use('/screenshots', express.static(path.resolve(process.cwd(), 'screenshots')));
+    app.use('/screenshot', screenshotRoute);
+    return app;
+}
 
-
-app.listen(port, () => {
-    console.log("Server is active on port:", port);
-});
+if (require.main === module) {
+    const app = createApp();
+    const port = 3000;
+    app.listen(port, () => {
+        console.log('Server is active on port:', port);
+    });
+}
