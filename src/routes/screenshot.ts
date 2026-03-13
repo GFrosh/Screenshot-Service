@@ -1,8 +1,10 @@
-const express = require('express');
-const router = express.Router();
-const { takeScreenshot } = require('../services/screenshotService');
+import express from 'express';
+import { Request, Response } from 'express';
+import takeScreenshot from '../services/screenshotService';
 
-router.post('/', async (req, res) => {
+const router = express.Router();
+
+router.post('/', async (req: Request, res: Response) => {
 	
 	const url = req.body?.url;
 	if (!url) return res.status(400).json({ success: false, error: 'URL is required' });
@@ -16,4 +18,4 @@ router.post('/', async (req, res) => {
 	}
 });
 
-module.exports = router;
+export default router;

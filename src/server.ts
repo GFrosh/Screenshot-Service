@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const screenshotRoute = require("./routes/screenshot");
+import screenshotRoute from './routes/screenshot';
 const port = 3000;
 
 app.use(express.json());

@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 
-async function takeScreenshot(url) {
+async function takeScreenshot(url: string): Promise<string> {
 	const browser = await puppeteer.launch();
 	const page = await browser.newPage();
 	await page.goto(url, { waitUntil: 'networkidle2' });
@@ -20,4 +20,4 @@ async function takeScreenshot(url) {
 	return `/screenshots/${filename}`;
 }
 
-module.exports = { takeScreenshot };
+export default takeScreenshot;

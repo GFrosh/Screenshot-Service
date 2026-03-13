@@ -1,6 +1,6 @@
-const tryOut = async (url, link) => {
+const tryOut = async (url: string, link: string) => {
     const reqBody = { url: link }
-    console.log(reqBody);
+    console.log("Screenshoting Page:", link);
     
     const res = await fetch(url, {
         method: "POST",
@@ -10,7 +10,6 @@ const tryOut = async (url, link) => {
         body: JSON.stringify(reqBody)
     });
     const data = await res.text();
-    console.log(data);
 }
 
-tryOut("http://localhost:3000/screenshot", "https://example.com");
+tryOut("http://localhost:3000/screenshot", "https://criticaldeveloper.com/");
