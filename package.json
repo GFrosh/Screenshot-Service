@@ -9,7 +9,9 @@
     "build": "tsc",
     "prestart": "npm run build",
     "predev": "npm run build",
-    "test": "npm run build && node --test \"dist/**/*.test.js\""
+    "test": "npm run build && node --test \"dist/**/*.test.js\"",
+    "clean": "del dist screenshots && tsc",
+    "trial": "node dist/services/sample.js"
   },
   "keywords": [],
   "author": "",

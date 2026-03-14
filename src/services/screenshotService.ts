@@ -11,13 +11,10 @@ async function takeScreenshot(url: string): Promise<string> {
 	const folder = path.join(__dirname, '../../screenshots');
 	if (!fs.existsSync(folder)) fs.mkdirSync(folder);
 
-	const filename = `screenshot-${Date.now()}.png`;
-	const filepath = path.join(folder, filename);
-
-	await page.screenshot({ path: filepath, fullPage: true });
+	const screenshotBuffer = await page.screenshot({ fullPage: true });
 
 	await browser.close();
-	return `/screenshots/${filename}`;
+	return screenshotBuffer.toString('base64');
 }
 
 export default takeScreenshot;

@@ -12,8 +12,8 @@ export function buildScreenshotRouter(screenshotFn: ScreenshotFn = takeScreensho
 		if (!url) return res.status(400).json({ success: false, error: 'URL is required' });
 
 		try {
-			const imagePath = await screenshotFn(url);
-			res.json({ success: true, screenshot_url: imagePath });
+			const screenshotData = await screenshotFn(url);
+			res.json({ success: true, screenshotData });
 		} catch (err) {
 			console.error(err);
 			res.status(500).json({ success: false, error: 'Failed to take screenshot' });

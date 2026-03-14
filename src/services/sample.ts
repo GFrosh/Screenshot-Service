@@ -9,7 +9,8 @@ const tryOut = async (url: string, link: string) => {
         },
         body: JSON.stringify(reqBody)
     });
-    const data = await res.text();
+    const data = await res.json();
+    console.log("Screenshot Data:", data.screenshotData.length);
 }
 
 tryOut("http://localhost:3000/screenshot", "https://criticaldeveloper.com/");
