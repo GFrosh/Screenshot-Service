@@ -5,6 +5,9 @@ import screenshotRoute from './routes/screenshot';
 export function createApp() {
     const app = express();
     app.use(express.json());
+    app.get('/', (req, res) => {
+        res.json({ message: 'service is running!' });
+    });
     app.use('/screenshots', express.static(path.resolve(process.cwd(), 'screenshots')));
     app.use('/screenshot', screenshotRoute);
     return app;
