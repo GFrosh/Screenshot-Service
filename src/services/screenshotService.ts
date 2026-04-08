@@ -3,18 +3,23 @@ const fs = require('fs');
 const path = require('path');
 
 async function takeScreenshot(url: string): Promise<string> {
-	const browser = await puppeteer.launch();
-	const page = await browser.newPage();
-	await page.goto(url, { waitUntil: 'networkidle2' });
+	const browser = await puppeteer.launch({
+		args: ['--no-sandbox', '--disable-setuid-sandbox'],
+	});
 
-	// Make screenshots folder if it doesn't exist
-	const folder = path.join(__dirname, '../../screenshots');
-	if (!fs.existsSync(folder)) fs.mkdirSync(folder);
+	try {
+		const page = await browser.newPage();
+		await page.goto(url, { waitUntil: 'networkidle2' });
 
-	const screenshotBuffer = await page.screenshot({ fullPage: true });
+		// Make screenshots folder if it doesn't exist
+		const folder = path.join(__dirname, '../../screenshots');
+		if (!fs.existsSync(folder)) fs.mkdirSync(folder);
 
-	await browser.close();
-	return screenshotBuffer.toString('base64');
+		const screenshotBuffer = await page.screenshot({ fullPage: true });
+		return screenshotBuffer.toString('base64');
+	} finally {
+		await browser.close();
+	}
 }
 
 export default takeScreenshot;
