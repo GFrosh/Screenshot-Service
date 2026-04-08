@@ -9,6 +9,7 @@
     "build": "tsc",
     "prestart": "npm run build",
     "predev": "npm run build",
+    "postinstall": "npx --yes puppeteer browsers install chrome",
     "test": "npm run build && node --test \"dist/**/*.test.js\"",
     "clean": "del dist screenshots && tsc",
     "trial": "node dist/services/sample.js"
