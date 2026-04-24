@@ -15,7 +15,7 @@
     "trial": "node dist/services/sample.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Gideon Onyegbula",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
